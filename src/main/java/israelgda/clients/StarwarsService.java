@@ -25,9 +25,9 @@ public interface StarwarsService {
             fallbackMethod = "getStarwarsShipsFallback"
     )
     @CircuitBreaker(
-            requestVolumeThreshold = 4,
-            failureRatio = 0.75,
-            delay = 1000,
+            requestVolumeThreshold = 2,
+            failureRatio = 1.0,
+            delay = 3000,
             successThreshold = 2
     )
     String getStarwarsShips();
