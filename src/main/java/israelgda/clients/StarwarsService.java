@@ -14,6 +14,8 @@ import java.time.temporal.ChronoUnit;
 @RegisterRestClient(baseUri = "https://swapi.info/api/")
 public interface StarwarsService {
 
+    String ERROR_MSG = "Starwars Service is currently unavailable. Please try again later.";
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("starships")
@@ -33,7 +35,7 @@ public interface StarwarsService {
     String getStarwarsShips();
 
     default String getStarwarsShipsFallback() {
-        return "Fallback response: Unable to retrieve starships from the Star Wars API.";
+        return ERROR_MSG;
     }
 
 }
