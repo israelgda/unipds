@@ -4,6 +4,7 @@ import israelgda.entities.Person;
 import israelgda.entities.dtos.PersonDTO;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -47,5 +48,17 @@ public class PersonResource {
             personFound.persist();
         }
         return Person.findById(id);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public void deletePerson(Integer id) {
+        Person personFound = Person.findById(id);
+        if (personFound == null) {
+            throw new RuntimeException("Person not found");
+        } else {
+            personFound.delete();
+        }
     }
 }
