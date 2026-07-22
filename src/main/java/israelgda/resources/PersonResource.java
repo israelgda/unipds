@@ -1,10 +1,12 @@
 package israelgda.resources;
 
 import israelgda.entities.Person;
+import israelgda.entities.dtos.PersonDTO;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -27,5 +29,23 @@ public class PersonResource {
         person.id = null;
         person.persist();
         return person;
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public Person updatePerson(
+            Integer id,
+            PersonDTO person
+    ){
+        Person personFound = Person.findById(id);
+        if (personFound == null) {
+            throw new RuntimeException("Person not found");
+        } else {
+            personFound.name = person.getName();
+            personFound.age = person.getAge();
+            personFound.persist();
+        }
+        return Person.findById(id);
     }
 }
