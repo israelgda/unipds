@@ -88,6 +88,10 @@
             <artifactId>quarkus-smallrye-health</artifactId>
             <version>3.33.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>io.opentelemetry.instrumentation</groupId>
+            <artifactId>opentelemetry-jdbc</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
