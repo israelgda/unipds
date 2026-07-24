@@ -1,5 +1,6 @@
 package israelgda.resources;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -15,6 +16,7 @@ public class SecureResource {
 
     @GET
     @Path("/claim")
+    @RolesAllowed("Subscriber")
     public String getClaim() {
         return "Hello! You have accessed a secure endpoint! With token: " + username;
     }
