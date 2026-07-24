@@ -1,0 +1,21 @@
+package israelgda.resources;
+
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import org.eclipse.microprofile.jwt.Claim;
+import org.eclipse.microprofile.jwt.Claims;
+
+@Path("/secure")
+@RequestScoped
+public class SecureResource {
+
+    @Claim(standard = Claims.preferred_username)
+    private String username;
+
+    @GET
+    @Path("/claim")
+    public String getClaim() {
+        return "Hello! You have accessed a secure endpoint! With token: " + username;
+    }
+}
